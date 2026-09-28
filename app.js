@@ -430,9 +430,19 @@ function showIOSInstallHelp() {
 }
 
 if ("serviceWorker" in navigator) {
+  // Cuando llega una versión nueva del service worker, recarga la página una vez
+  let recargado = false;
+  navigator.serviceWorker.addEventListener("controllerchange", () => {
+    if (recargado) return;
+    recargado = true;
+    location.reload();
+  });
+
   window.addEventListener("load", async () => {
     try {
-      const registration = await navigator.serviceWorker.register("./sw.js");
+      const registration = await navigator.serviceWorker.register("./sw.js", {
+        updateViaCache: "none"
+      });
       await registration.update();
     } catch (error) {
       console.error("Error registrando Service Worker:", error);
