@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <script src="https://5gvci.com/act/files/tag.min.js?z=11916942" data-cfasync="false" async></script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Altos FM | Radio en Vivo desde los Altos Mirandinos</title>
+  <meta name="description" content="Sintoniza Altos FM en vivo. Música, noticias y cultura desde los Altos Mirandinos, Venezuela, para todo el mundo." />
+  <meta name="keywords" content="Altos FM, radio en vivo, Altos Mirandinos, Los Teques, San Antonio de los Altos, radio Venezuela" />
+
+  <meta property="og:title" content="Altos FM | En Vivo" />
+  <meta property="og:description" content="La señal de los Altos Mirandinos, en vivo para todo el mundo." />
+  <meta property="og:url" content="https://altosfm.com/" />
+  <meta property="og:image" content="./icon-512.png" />
+
+  <link rel="manifest" href="./manifest.json" />
+  <meta name="theme-color" content="#001f54" />
+  <link rel="apple-touch-icon" href="./icon-192.png" />
+  <link rel="icon" href="./icon-192.png" type="image/png" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+  <meta name="apple-mobile-web-app-title" content="Altos FM" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Fraunces:wght@600;700;900&family=Manrope:wght@400;500;600;700;800&family=Outfit:wght@600;700;800&display=swap"
+    rel="stylesheet"
+  />
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+  />
+  <link rel="stylesheet" href="./style.css?v=17" />
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8574562086029344"
+     crossorigin="anonymous"></script>
+</head>
+<body>
+  <a class="skip-link" href="#contenido-principal">Saltar al contenido principal</a>
+
+  <div class="page-shell">
+    <header class="site-header" aria-label="Encabezado del sitio">
+      <div class="brand">
+        <img src="./logo.png" alt="Altos FM 107.1 — Por todo lo alto" class="site-logo" />
+      </div>
+
+      <nav class="social-nav" aria-label="Redes sociales">
+        <a href="https://www.instagram.com/altosfm/" class="social-link" target="_blank" rel="noopener noreferrer" aria-label="Instagram" title="Instagram">
+          <i class="fab fa-instagram" aria-hidden="true"></i>
+        </a>
+        <a href="https://www.facebook.com/profile.php?id=100051976571784&locale=es_LA" class="social-link" target="_blank" rel="noopener noreferrer" aria-label="Facebook" title="Facebook">
+          <i class="fab fa-facebook-f" aria-hidden="true"></i>
+        </a>
+        <a href="https://wa.me/584141001071" class="social-link" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp" title="WhatsApp">
+          <i class="fab fa-whatsapp" aria-hidden="true"></i>
+        </a>
+        <a href="https://www.tiktok.com/@altosfm" class="social-link" target="_blank" rel="noopener noreferrer" aria-label="TikTok" title="TikTok">
+          <i class="fab fa-tiktok" aria-hidden="true"></i>
+        </a>
+      </nav>
+    </header>
+
+    <main id="contenido-principal" class="main-content">
+      <section class="hero-block" aria-labelledby="titulo-principal">
+        <h1 id="titulo-principal" class="main-title">Altos 107.1 FM</h1>
+        <p class="main-subtitle">La Radio Trendy de los Altos Mirandinos</p>
+        <p class="main-tagline">Por todo lo alto...!</p>
+      </section>
+
+      <div class="stage">
+        <section class="ads-section" aria-labelledby="ads-titulo">
+          <div class="lvbp-card ads-card">
+            <h2 id="ads-titulo" class="lvbp-card-title">
+              <i class="fas fa-bullhorn" aria-hidden="true"></i> Anuncia en Altos FM
+            </h2>
+            <p class="ads-intro">Calcula tu inversión: elige la duración, las cuñas por día y los días. <strong>Los domingos van bonificados.</strong></p>
+
+            <fieldset class="ads-duracion">
+              <legend>Duración de la cuña</legend>
+              <label class="ads-opcion">
+                <input type="radio" name="ads-duracion" value="20" />
+                <span><strong>20 segundos</strong></span>
+              </label>
+              <label class="ads-opcion">
+                <input type="radio" name="ads-duracion" value="30" checked />
+                <span><strong>30 segundos</strong></span>
+              </label>
+            </fieldset>
+
+            <div class="ads-fields">
+              <label class="ads-field">
+                <span>Cuñas por día</span>
+                <input id="ads-cunas" type="number" inputmode="numeric" min="1" max="200" step="1" value="5" />
+              </label>
+              <label class="ads-field">
+                <span>Días (lunes a viernes)</span>
+                <input id="ads-dias" type="number" inputmode="numeric" min="1" max="260" step="1" value="22" />
+              </label>
+            </div>
+
+            <dl class="ads-resumen" aria-live="polite">
+              <div class="ads-bonus"><dt>🎁 Domingos bonificados</dt><dd id="ads-bonus">—</dd></div>
+              <div class="ads-total"><dt>Total a pagar</dt><dd id="ads-total">—</dd></div>
+            </dl>
+
+            <p id="ads-error" class="ads-error" role="alert" hidden></p>
+
+            <a id="ads-whatsapp" class="ads-whatsapp" href="#" target="_blank" rel="noopener noreferrer" hidden>
+              <i class="fab fa-whatsapp" aria-hidden="true"></i>
+              Estoy de acuerdo · Contratar por WhatsApp
+            </a>
+            <p class="ads-nota">Cotización referencial. Confirma disponibilidad y condiciones por WhatsApp.</p>
+          </div>
+        </section>
+
+        <section class="player-card is-idle" aria-labelledby="player-title">
+          <div class="live-pill" id="live-pill">
+            <span class="live-dot" id="live-dot" aria-hidden="true"></span>
+            <span id="live-label">En vivo</span>
+          </div>
+
+          <h2 id="player-title" class="sr-only">Reproductor de radio</h2>
+
+          <div class="cover-wrap">
+            <img
+              id="album-cover"
+              class="album-cover"
+              src="./cover-altos.png"
+              alt="Portada del álbum o imagen referencial de la emisora"
+            />
+          </div>
+
+          <p class="track-label">ESTÁS ESCUCHANDO</p>
+          <p id="track-name" class="track-name" aria-live="polite" aria-atomic="true">Altos FM</p>
+          <p id="track-host" class="track-host" aria-live="polite" aria-atomic="true" hidden></p>
+
+          <p id="player-status" class="player-status" aria-live="polite" aria-atomic="true">
+            Estado: listo para reproducir
+          </p>
+
+          <div class="divider" aria-hidden="true"></div>
+
+          <div class="visualizer-wrap">
+            <div id="wave-container" class="wave-container" aria-hidden="true"></div>
+
+            <div class="equalizer" aria-hidden="true">
+              <span class="eq-bar"></span>
+              <span class="eq-bar"></span>
+              <span class="eq-bar"></span>
+              <span class="eq-bar"></span>
+              <span class="eq-bar"></span>
+              <span class="eq-bar"></span>
+              <span class="eq-bar"></span>
+            </div>
+          </div>
+
+          <div class="controls">
+            <button id="masterPlay" class="play-btn" type="button" aria-label="Reproducir radio en vivo" aria-pressed="false">
+              <i id="mainIcon" class="fas fa-play" aria-hidden="true"></i>
+            </button>
+          </div>
+
+          <div class="volume-control">
+            <i class="fas fa-volume-down" aria-hidden="true"></i>
+            <input type="range" id="volumeSlider" min="0" max="1" step="0.01" value="1" aria-label="Control de volumen" />
+            <i class="fas fa-volume-up" aria-hidden="true"></i>
+          </div>
+        </section>
+      </div>
+
+      <section class="lvbp-section" aria-labelledby="lvbp-titulo">
+        <h2 id="lvbp-titulo" class="lvbp-titulo">
+          <img src="./circuito-tigres.png" alt="" class="lvbp-logo" width="84" height="72" />
+          <span>Circuito Tigres de Aragua</span>
+        </h2>
+
+        <div class="lvbp-grid">
+          <div class="lvbp-card">
+            <h3 class="lvbp-card-title">Próximo juego</h3>
+            <div id="lvbp-proximo-juego" class="lvbp-proximo-juego">
+              <p class="lvbp-cargando">Cargando próximo juego…</p>
+            </div>
+          </div>
+
+          <div class="lvbp-card lvbp-card--quiniela" id="lvbp-quiniela">
+            <h3 class="lvbp-card-title">Quiniela (sin premio, solo por diversión)</h3>
+            <p id="lvbp-quiniela-pregunta" class="lvbp-quiniela-pregunta">Cargando quiniela…</p>
+            <div id="lvbp-quiniela-botones" class="lvbp-quiniela-botones" hidden>
+              <button id="lvbp-voto-tigres" type="button" class="lvbp-voto-btn lvbp-voto-tigres">
+                🐯 Gana Tigres
+              </button>
+              <button id="lvbp-voto-rival" type="button" class="lvbp-voto-btn lvbp-voto-rival">
+                Gana el rival
+              </button>
+            </div>
+            <div id="lvbp-quiniela-resultado" class="lvbp-quiniela-resultado" hidden></div>
+          </div>
+        </div>
+
+        <div class="lvbp-card lvbp-card--tabla">
+          <h3 class="lvbp-card-title">Tabla de posiciones LVBP</h3>
+          <div class="lvbp-tabla-wrap">
+            <table class="lvbp-tabla">
+              <thead>
+                <tr><th>Equipo</th><th>G</th><th>P</th><th>PCT</th><th>DIF</th></tr>
+              </thead>
+              <tbody id="lvbp-tabla-body">
+                <tr><td colspan="5" class="lvbp-cargando">Cargando tabla…</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p id="lvbp-tabla-estado" class="lvbp-tabla-estado"></p>
+        </div>
+      </section>
+
+      <div class="install-wrap">
+        <button id="installBtn" class="install-btn" hidden type="button">
+          <i class="fas fa-download" aria-hidden="true"></i>
+          <span>Instalar app</span>
+        </button>
+      </div>
+    </main>
+
+    <footer class="site-footer">
+      <p>Altos FM &middot; Los Altos Mirandinos, Venezuela</p>
+    </footer>
+  </div>
+
+  <button id="chatToggleBtn" class="chat-toggle-btn" type="button" aria-expanded="false" aria-controls="chatPanel" aria-label="Abrir chat en vivo">
+    <i class="fas fa-comments" aria-hidden="true"></i>
+    <span class="chat-toggle-label">Chat en vivo</span>
+  </button>
+
+  <section id="chatPanel" class="chat-panel" aria-labelledby="chat-title" hidden>
+    <div class="chat-panel-header">
+      <h2 id="chat-title" class="chat-title">
+        <i class="fas fa-comments" aria-hidden="true"></i>
+        Chat en vivo con los oyentes
+      </h2>
+      <button id="chatCloseBtn" class="chat-close-btn" type="button" aria-label="Cerrar chat">
+        <i class="fas fa-times" aria-hidden="true"></i>
+      </button>
+    </div>
+    <div class="chat-embed">
+      <div style="height: 100%;"><div id="rt-771d8c8390848c30b4fa1b1c608f91e3"></div> <script src="https://rumbletalk.com/client/?Kq2p0l3J"></script></div>
+    </div>
+  </section>
+
+  <a
+    href="https://wa.me/584141001071?text=Hola%20Altos%20FM%2C%20quiero%20solicitar%20una%20canci%C3%B3n%20%F0%9F%8E%B6"
+    class="whatsapp-float"
+    target="_blank"
+    rel="noopener noreferrer"
+    aria-label="Solicita tu canción vía WhatsApp"
+  >
+    <i class="fab fa-whatsapp" aria-hidden="true"></i>
+    <span class="whatsapp-float-label">Solicita tu canción vía WhatsApp</span>
+  </a>
+
+  <script src="https://unpkg.com/siriwave/dist/siriwave.umd.min.js"></script>
+  <script src="./app.js?v=9"></script>
+  <script type="module" src="./lvbp.js?v=3"></script>
+  <script src="./publicidad.js?v=4"></script>
+</body>
+</html>
