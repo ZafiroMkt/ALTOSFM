@@ -65,6 +65,18 @@ Cloudflare necesita administrar el DNS de `altosfm.com`. Si ya lo usas, salta al
 4. Cloudflare te da **2 nameservers**. Entra donde compraste el dominio y reemplaza los
    nameservers por esos dos. Puede tardar desde minutos hasta unas horas en activarse.
 
+### En Spaceship (donde se compró altosfm.com)
+
+1. **Antes de tocar nada**, en Spaceship abre **Launchpad → Domain Manager → altosfm.com →
+   Advanced DNS** y toma captura de todos los registros (A, CNAME, MX, TXT).
+2. En Cloudflare compara: los mismos registros deben aparecer en **DNS → Records**.
+   Si falta alguno, agrégalo igual. Los de la página web (A / CNAME de `@` y `www`) y los
+   del correo (MX / TXT) déjalos con la **nube gris** ("DNS only") si dudas.
+3. En Spaceship, en la ficha de altosfm.com, si **DNSSEC** está activado, desactívalo primero.
+4. En Spaceship, en **Nameservers**, cambia de "Spaceship nameservers" a **Custom
+   nameservers** y pega los 2 que te dio Cloudflare (algo como `xxx.ns.cloudflare.com`). Guarda.
+5. Espera el correo de Cloudflare diciendo que el dominio está **Active**.
+
 ## Paso 4 – Crea el túnel (gratis)
 
 1. En el panel de Cloudflare ve a **Zero Trust → Networks → Tunnels**
