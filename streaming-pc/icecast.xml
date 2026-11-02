@@ -1,7 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
-  Configuración de Icecast para la PC del estudio (Windows) - Altos FM
+  Configuracion de Icecast para la PC del estudio (Windows) - Altos FM
   Copia este archivo encima de:  C:\Archivos de programa\Icecast\icecast.xml
-  (o la carpeta donde se instaló Icecast) y CAMBIA LAS DOS CONTRASEÑAS.
+  (o la carpeta donde se instalo Icecast) y CAMBIA LAS DOS CLAVES.
 -->
 <icecast>
     <location>Altos Mirandinos, Venezuela</location>
@@ -28,13 +29,13 @@
         <admin-password>CAMBIA-ESTA-CLAVE-DE-ADMIN</admin-password>
     </authentication>
 
-    <!-- Solo escucha dentro de la PC; el público entra por Cloudflare Tunnel -->
+    <!-- Solo escucha dentro de la PC; el publico entra por Cloudflare Tunnel -->
     <listen-socket>
         <port>8000</port>
         <bind-address>127.0.0.1</bind-address>
     </listen-socket>
 
-    <!-- Permite que la página web (altosfm.com) lea el audio y la metadata -->
+    <!-- Permite que la pagina web (altosfm.com) lea el audio y la metadata -->
     <http-headers>
         <header name="Access-Control-Allow-Origin" value="*" />
         <header name="Access-Control-Allow-Headers" value="Origin, Accept, X-Requested-With, Content-Type, Icy-MetaData" />
@@ -44,11 +45,11 @@
     <mount type="normal">
         <mount-name>/radio</mount-name>
         <stream-name>Altos FM</stream-name>
-        <stream-description>La señal de los Altos Mirandinos</stream-description>
+        <stream-description>La se&#241;al de los Altos Mirandinos</stream-description>
         <stream-url>https://altosfm.com</stream-url>
         <genre>Variado</genre>
         <public>0</public>
-        <!-- Para que los acentos y la ñ se vean bien en el nombre de la canción -->
+        <!-- Para que los acentos se vean bien en el nombre de la cancion -->
         <charset>UTF-8</charset>
     </mount>
 
