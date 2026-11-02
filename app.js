@@ -1,6 +1,7 @@
 /* ============================================================
    1) URL DE TU STREAM DE AUDIO (servidor propio Icecast)
-   El servidor está en la carpeta /streaming-server de este repo.
+   Opción gratis (PC del estudio + Cloudflare Tunnel): carpeta /streaming-pc
+   Opción con VPS (Icecast + Caddy en Docker):         carpeta /streaming-server
    - STREAM_URL:       enlace del audio que escuchan los oyentes.
    - STATUS_URL:       JSON de Icecast con el nombre de la canción.
    Si algún día cambias de servidor, solo cambia STREAM_BASE y MOUNT.
