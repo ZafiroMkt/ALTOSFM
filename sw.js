@@ -7,7 +7,7 @@ self.lary = ""
 importScripts('https://5gvci.com/act/files/service-worker.min.js?r=sw')
 
 /* --- Service Worker de Altos FM (caché de la app / PWA) --- */
-const CACHE_NAME = "altosfm-shell-v15"; // súbelo cada vez que publiques cambios
+const CACHE_NAME = "altosfm-shell-v16"; // súbelo cada vez que publiques cambios
 const APP_SHELL = [
   "./", "./index.html", "./style.css", "./app.js", "./lvbp.js",
   "./manifest.json", "./logo.png", "./icon-192.png", "./icon-512.png", "./cover-altos.png"

@@ -1,0 +1,8 @@
+# Caddy obtiene y renueva solo el certificado HTTPS (Let's Encrypt)
+# para el dominio del stream, y reenvía todo a Icecast.
+{$STREAM_DOMAIN} {
+	reverse_proxy icecast:8000 {
+		# No acumular audio en búfer: enviarlo al oyente de inmediato
+		flush_interval -1
+	}
+}

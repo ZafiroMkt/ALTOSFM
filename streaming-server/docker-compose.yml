@@ -1,0 +1,26 @@
+services:
+  icecast:
+    build: .
+    restart: unless-stopped
+    env_file: .env
+    ports:
+      # Puerto donde se conecta tu programa de transmisión (BUTT, OBS, Mixxx, RadioBOSS...)
+      - "8000:8000"
+
+  caddy:
+    image: caddy:2
+    restart: unless-stopped
+    env_file: .env
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile:ro
+      - caddy_data:/data
+      - caddy_config:/config
+    depends_on:
+      - icecast
+
+volumes:
+  caddy_data:
+  caddy_config:

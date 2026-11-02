@@ -1,19 +1,15 @@
 /* ============================================================
-   1) PON AQUÍ LA URL DE TU STREAM DE AUDIO
-   Ejemplos según tu proveedor:
-   - Zeno.fm:      "https://stream.zeno.fm/TU_CLAVE"
-   - Icecast:      "https://tu-servidor:puerto/stream"
-   - Shoutcast:    "https://tu-servidor:puerto/;"
+   1) URL DE TU STREAM DE AUDIO (servidor propio Icecast)
+   El servidor está en la carpeta /streaming-server de este repo.
+   - STREAM_URL:       enlace del audio que escuchan los oyentes.
+   - STATUS_URL:       JSON de Icecast con el nombre de la canción.
+   Si algún día cambias de servidor, solo cambia STREAM_BASE y MOUNT.
    ============================================================ */
-const STREAM_URL = "https://stream.zeno.fm/lynokabrjqevv";
-
-/* Clave de Zeno.fm extraída automáticamente de STREAM_URL, usada
-   para conectarnos a la API de metadata en tiempo real de Zeno.
-   Si cambias de proveedor de streaming, reemplaza ZENO_METADATA_URL
-   por el endpoint de metadata que te dé tu proveedor, o déjalo en
-   null para desactivar la portada de álbum y el nombre de la canción. */
-const ZENO_MOUNT_KEY = STREAM_URL.split("/").pop();
-const ZENO_METADATA_URL = `https://api.zeno.fm/mounts/metadata/subscribe/${ZENO_MOUNT_KEY}`;
+const STREAM_BASE = "https://stream.altosfm.com";
+const STREAM_MOUNT = "/radio";
+const STREAM_URL = STREAM_BASE + STREAM_MOUNT;
+const STATUS_URL = STREAM_BASE + "/status-json.xsl";
+const METADATA_POLL_MS = 15000;
 
 const DEFAULT_COVER = "./cover-altos.png";
 const DEFAULT_TEXT = "Altos FM";
@@ -45,7 +41,9 @@ let metadataSource = null;
 /* ============================================================
    SIRIWAVE (onda de audio animada)
    ============================================================ */
-const siriWave = new SiriWave({
+/* Si la librería de la onda no carga (CDN caído), la radio sigue funcionando */
+const noopWave = { setAmplitude() {}, setSpeed() {} };
+const siriWave = typeof SiriWave === "undefined" ? noopWave : new SiriWave({
   container: document.getElementById("wave-container"),
   width: 260,
   height: 46,
@@ -134,7 +132,7 @@ function setupVolumeControl() {
 }
 
 /* ============================================================
-   METADATA EN VIVO (Zeno.fm) + PORTADA DE ÁLBUM (iTunes)
+   METADATA EN VIVO (Icecast) + PORTADA DE ÁLBUM (iTunes)
    ============================================================ */
 function normalizeTrack(track) {
   return String(track || "").replace(/\s+/g, " ").trim();
@@ -292,39 +290,34 @@ async function applyNowPlaying(rawTitle) {
   renderNowPlaying();
 }
 
-function startMetadataStream() {
-  if (!ZENO_METADATA_URL || !("EventSource" in window)) return;
-  if (metadataSource) return;
-
+/* Lee el título actual desde Icecast (status-json.xsl).
+   "source" puede ser un objeto o una lista si hay varios montajes. */
+async function fetchIcecastTitle() {
   try {
-    metadataSource = new EventSource(ZENO_METADATA_URL);
-
-    metadataSource.onmessage = (event) => {
-      try {
-        const data = JSON.parse(event.data);
-        if (data.streamTitle) applyNowPlaying(data.streamTitle);
-      } catch (error) {
-        console.error("Error leyendo metadata de Zeno:", error);
-      }
-    };
-
-    metadataSource.onerror = (error) => {
-      console.error("Conexión de metadata interrumpida:", error);
-      metadataSource.close();
-      metadataSource = null;
-      // Reintenta más tarde mientras siga sonando la radio
-      setTimeout(() => {
-        if (!audio.paused) startMetadataStream();
-      }, 8000);
-    };
+    const response = await fetch(`${STATUS_URL}?_=${Date.now()}`, { cache: "no-store" });
+    if (!response.ok) throw new Error(`HTTP ${response.status}`);
+    const data = await response.json();
+    let sources = data?.icestats?.source || [];
+    if (!Array.isArray(sources)) sources = [sources];
+    const source =
+      sources.find((s) => String(s.listenurl || "").endsWith(STREAM_MOUNT)) || sources[0];
+    if (!source) return;
+    const title = source.title || [source.artist, source.title].filter(Boolean).join(" - ");
+    if (title) applyNowPlaying(title);
   } catch (error) {
-    console.error("No se pudo iniciar la metadata en vivo:", error);
+    console.error("No se pudo leer la metadata del servidor:", error);
   }
+}
+
+function startMetadataStream() {
+  if (!STATUS_URL || metadataSource) return;
+  fetchIcecastTitle();
+  metadataSource = setInterval(fetchIcecastTitle, METADATA_POLL_MS);
 }
 
 function stopMetadataStream() {
   if (metadataSource) {
-    metadataSource.close();
+    clearInterval(metadataSource);
     metadataSource = null;
   }
 }
