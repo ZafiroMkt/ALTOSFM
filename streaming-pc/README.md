@@ -95,8 +95,23 @@ Cloudflare necesita administrar el DNS de `altosfm.com`. Si ya lo usas, salta al
    - Subdomain: `stream`
    - Domain: `altosfm.com`
    - Type: **HTTP**
-   - URL: `localhost:8000`
+   - URL: `127.0.0.1:8000` (no uses `localhost`: Icecast solo escucha en 127.0.0.1)
 5. Guarda.
+
+### Si la PC tiene Windows 7 u 8
+
+Las versiones nuevas de `cloudflared` ya no funcionan en Windows 7/8. Usa la **2023.10.0**, la
+última compilada para Windows 7:
+
+- Windows 7 de 32 bits: <https://github.com/cloudflare/cloudflared/releases/download/2023.10.0/cloudflared-windows-386.exe>
+- Windows 7 de 64 bits: <https://github.com/cloudflare/cloudflared/releases/download/2023.10.0/cloudflared-windows-amd64.exe>
+
+1. Crea la carpeta `C:\cloudflared`, guarda ahí el archivo y renómbralo a `cloudflared.exe`.
+2. Abre **cmd como administrador** y ejecuta (pega tu token, el texto largo que empieza con `eyJ`):
+   ```
+   C:\cloudflared\cloudflared.exe service install TU_TOKEN
+   ```
+3. En el panel de Cloudflare el conector debe aparecer como **Healthy**.
 
 ## Paso 5 – Prueba
 
