@@ -1,6 +1,6 @@
 <!--
   Configuración de Icecast para la PC del estudio (Windows) - Altos FM
-  Copia este archivo encima de:  C:\Program Files\Icecast\icecast.xml
+  Copia este archivo encima de:  C:\Archivos de programa\Icecast\icecast.xml
   (o la carpeta donde se instaló Icecast) y CAMBIA LAS DOS CONTRASEÑAS.
 -->
 <icecast>
@@ -55,7 +55,7 @@
     <fileserve>1</fileserve>
 
     <paths>
-        <logdir>./logs</logdir>
+        <logdir>./log</logdir>
         <webroot>./web</webroot>
         <adminroot>./admin</adminroot>
         <alias source="/" destination="/status.xsl"/>

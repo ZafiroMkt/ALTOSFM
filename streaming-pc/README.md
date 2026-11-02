@@ -34,7 +34,8 @@ Ten en cuenta:
 3. En la carpeta del repositorio, abre `streaming-pc/icecast.xml`, **cambia las dos
    contraseñas** (`CAMBIA-ESTA-CLAVE-...`) y guárdalo.
 4. Copia ese archivo encima del `icecast.xml` de la carpeta donde se instaló Icecast
-   (normalmente `C:\Program Files (x86)\Icecast`). Windows pedirá permiso de administrador.
+   (normalmente `C:\Archivos de programa\Icecast` o `C:\Program Files (x86)\Icecast`). Windows pedirá permiso de administrador.
+   Importante: usa Icecast **2.4.4** (archivos de 2018). La versión vieja "Icecast2 Win32" de 2005 no sirve.
 5. Abre **Icecast** y presiona **Start Server**. Marca la opción para que arranque
    con Windows si la tienes.
 6. Comprueba que funciona: abre <http://localhost:8000> en el navegador de la PC.
